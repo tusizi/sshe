@@ -10,6 +10,41 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+  <!-- mysql数据库驱动 -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.30</version>
+	</dependency> 
+		<!-- sql server数据库驱动 -->
+		<!-- <dependency> <groupId>net.sourceforge.jtds</groupId> <artifactId>jtds</artifactId> <version>1.2.4</version> </dependency> -->
+		<!-- oracle数据库驱动 -->
+		<!--  
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.1.0</version>
+		</dependency>
+		-->
+  <!-- druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>0.2.8</version>
+		</dependency>
+  <!-- aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+  <!-- servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
  <!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -23,19 +58,23 @@
 			<version>4.11-beta-1</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- hibernate4 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.1.7.Final</version>
+		</dependency>
 		<!-- struts2 -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 			<version>2.3.4.1</version>
-			<!-- 
 			<exclusions>
 				<exclusion>
 					<groupId>javassist</groupId>
 					<artifactId>javassist</artifactId>
 				</exclusion>
 			</exclusions>
-			 -->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>

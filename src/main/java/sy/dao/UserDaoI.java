@@ -1,12 +1,10 @@
-package sy.service;
+package sy.dao;
 
 import java.io.Serializable;
 
 import sy.model.User;
 
-public interface UserServiceI {
-	
-	public void test();
-	
+public interface UserDaoI {
+
 	public Serializable save(User user);
 }
