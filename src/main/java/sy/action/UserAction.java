@@ -1,11 +1,15 @@
 package sy.action;
 
+import java.util.Date;
+import java.util.UUID;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import sy.model.User;
 import sy.service.UserServiceI;
 
 @ParentPackage("basePackage")
@@ -31,6 +35,16 @@ public class UserAction {
 //		ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
 //		UserServiceI userService =  (UserServiceI) ac.getBean("userService");
 		userService.test();
+	}
+	
+	public void addUser(){
+		
+		User user = new User();
+		user.setId(UUID.randomUUID().toString());
+		user.setName("xxx");
+		user.setPwd("23444");
+		user.setCreatetime(new Date());
+		userService.save(user);
 	}
 
 }
