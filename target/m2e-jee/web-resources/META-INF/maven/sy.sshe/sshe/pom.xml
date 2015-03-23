@@ -28,9 +28,9 @@
 		-->
   <!-- druid -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>0.2.8</version>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		    <version>1.0.13</version>
 		</dependency>
   <!-- aspectjweaver -->
 		<dependency>
