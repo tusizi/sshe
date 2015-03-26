@@ -14,21 +14,30 @@
     <script type="text/javascript" src="jslib/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js"></script>
     <link rel="stylesheet" href="jslib/jquery-easyui-1.4.2/themes/default/easyui.css" type="text/css"></link>
     <link rel="stylesheet" href="jslib/jquery-easyui-1.4.2/themes/icon.css" type="text/css"></link>
+    <script type="text/javascript" src="jslib/syUtil.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		
+    	});
+    </script>
    </head> 
   <body class="easyui-layout">
     <div data-options="region:'north'" style="height:60px;"></div>
     <div data-options="region:'south'" style="height:20px;"></div>
-    <div data-options="region:'west',title:'west'" style="width:200px;"></div>
+    <div data-options="region:'west',split:true" style="width:200px;">
+    	<div class="easyui-panel" data-options="title:'ssss',border:false,fit:true"></div>
+    </div>
     <div data-options="region:'east',title:'east'" style="width:200px;"></div>
     <div data-options="region:'center',title:'center'"></div>
     
-    <div class="easyui-dialog" data-options="title:'登录',modal:true,closable:false,
-    	botton[{
-				text:'登录',
-				iconCls:'icon-edit',
-				handler:function(){}
-			},{
+   <div class="easyui-dialog" data-options="title:'登录',modal:true,closable:false,buttons:[{
 				text:'注册',
+				iconCls:'icon-edit',
+				handler:function(){
+					$('#index_regDialog').dialog('open');
+				}
+			},{
+				text:'登录',
 				iconCls:'icon-help',
 				handler:function(){}
 			}]">
@@ -42,6 +51,35 @@
     			<td><input /></td>
     		</tr>
     	</table>
+    </div>
+     <div id="index_regDialog" class="easyui-dialog" style="width:250px;" data-options="title:'注册',modal:true,closed:true,buttons:[{
+				text:'注册',
+				iconCls:'icon-edit',
+				handler:function(){
+					$('#index_regForm').form('submit',{
+		    		    url:'{pageContext.request.contextPath}/userAction!reg.action',   
+		    		    success:function(data){
+		    		        alert(data);
+	    		    }
+	    		});
+				}
+			}]">
+		<form id="index_regForm" method="post">
+	    	<table>
+	    		<tr>
+	    			<th>登录名</th>
+	    			<td><input name="name" class="easyui-validatebox" data-options="required:true"/></td>
+	    		</tr>
+	    		<tr>
+	    			<th>密码</th>
+	    			<td><input name="pwd" type="password" class="easyui-validatebox" data-options="required:true"/></td>
+	    		</tr>
+	    		<tr>
+	    			<th>重复密码</th>
+	    			<td><input name="repwd" type="password" class="easyui-validatebox" data-options="required:true,validType:'eqPwd[\'#index_regForm input[name=pwd]\']'"/></td>
+	    		</tr>
+	    	</table>
+    	</form>
     </div>
   </body>
 </html>

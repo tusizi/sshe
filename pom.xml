@@ -12,17 +12,17 @@
 	</properties>
 	<dependencies>
 		<!-- mysql数据库驱动 -->
-		<!-- <dependency>
+		 <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
-		</dependency> -->
+		</dependency> 
 		<!-- h2数据库驱动 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.186</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- sql server数据库驱动 -->
 		<!-- <dependency> <groupId>net.sourceforge.jtds</groupId> <artifactId>jtds</artifactId> 

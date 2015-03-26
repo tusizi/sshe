@@ -29,22 +29,8 @@ public class UserAction {
 	public void setUserService(UserServiceI userService) {
 		this.userService = userService;
 	}
-
-	public void test(){
-		logger.info("进入action");
-//		ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext.getServletContext());
-//		UserServiceI userService =  (UserServiceI) ac.getBean("userService");
-		userService.test();
-	}
 	
-	public void addUser(){
+	public void reg(){
 		
-		User user = new User();
-		user.setId(UUID.randomUUID().toString());
-		user.setName("xxx");
-		user.setPwd("23444");
-		user.setCreatetime(new Date());
-		userService.save(user);
 	}
-
 }
