@@ -34,21 +34,26 @@
     		    }
     		    
     		});*/
-    		$.ajax({
-    		    url:'${pageContext.request.contextPath}/userAction!reg.action',   
-				data:$('#index_regForm').serialize(),
-				dataType : 'json',
-				success:function(obj,textStatus, jqXHR){
-					
-    		    	if (obj.success){
-    		    		$('#index_regDialog').dialog('close');
-    		    	}
-    		    	$.messager.show({
-    		    		title : '提示',
-    		    		msg : obj.msg,
-    		    	});
-				}
-    		});
+    		
+    		if($('#index_regForm').form('validate')){
+    			$.ajax({
+        		    url:'${pageContext.request.contextPath}/userAction!reg.action',   
+    				data:$('#index_regForm').serialize(),
+    				dataType : 'json',
+    				success:function(obj,textStatus, jqXHR){
+    					
+        		    	if (obj.success){
+        		    		$('#index_regDialog').dialog('close');
+        		    	}
+        		    	$.messager.show({
+        		    		title : '提示',
+        		    		msg : obj.msg,
+        		    	});
+    				}
+        		});
+    		}else{
+    			alert('验证失败');
+    		}	
     	}
     		
     </script>
