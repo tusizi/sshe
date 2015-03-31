@@ -1,6 +1,7 @@
 package sy.service.impl;
 
-import java.io.Serializable;
+import java.util.Date;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,17 @@ public class UserServiceImpl implements UserServiceI {
 		this.userDao = userDao;
 	}
 
-
 	@Override
-	public void test() {
-		logger.info("进入测试");
-
-	}
-
-	@Override
-	public Serializable save(User user) {
+	public void save(String name, String pwd) {
 		
-		return userDao.save(user);
+		User user=new User();
+		user.setId(UUID.randomUUID().toString());
+		user.setName(name);
+		user.setPwd(pwd);
+		user.setCreatetime(new Date());
+		userDao.save(user);
 	}
+
+
 
 }

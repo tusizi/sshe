@@ -19,6 +19,38 @@
     	$(function(){
     		
     	});
+    	function regUser(){
+    		/*$('#index_regForm').form('submit',{
+    		    url:'${pageContext.request.contextPath}/userAction!reg.action',   
+    		    success:function(r){	
+    		    	var obj = jQuery.parseJSON(r);
+    		    	if (obj.success){
+    		    		$('#index_regDialog').dialog('close');
+    		    	}
+    		    	$.messager.show({
+    		    		title : '提示',
+    		    		msg : obj.msg,
+    		    	});
+    		    }
+    		    
+    		});*/
+    		$.ajax({
+    		    url:'${pageContext.request.contextPath}/userAction!reg.action',   
+				data:$('#index_regForm').serialize(),
+				dataType : 'json',
+				success:function(obj,textStatus, jqXHR){
+					
+    		    	if (obj.success){
+    		    		$('#index_regDialog').dialog('close');
+    		    	}
+    		    	$.messager.show({
+    		    		title : '提示',
+    		    		msg : obj.msg,
+    		    	});
+				}
+    		});
+    	}
+    		
     </script>
    </head> 
   <body class="easyui-layout">
@@ -34,6 +66,7 @@
 				text:'注册',
 				iconCls:'icon-edit',
 				handler:function(){
+					$('#index_regForm input').val('');
 					$('#index_regDialog').dialog('open');
 				}
 			},{
@@ -56,13 +89,8 @@
 				text:'注册',
 				iconCls:'icon-edit',
 				handler:function(){
-					$('#index_regForm').form('submit',{
-		    		    url:'{pageContext.request.contextPath}/userAction!reg.action',   
-		    		    success:function(data){
-		    		        alert(data);
+					regUser();
 	    		    }
-	    		});
-				}
 			}]">
 		<form id="index_regForm" method="post">
 	    	<table>
