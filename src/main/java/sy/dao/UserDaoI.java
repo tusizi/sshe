@@ -1,10 +1,7 @@
 package sy.dao;
 
-import java.io.Serializable;
+import sy.model.Tuser;
 
-import sy.model.User;
 
-public interface UserDaoI {
-
-	public Serializable save(User user);
+public interface UserDaoI extends BaseDaoI<Tuser> {
 }

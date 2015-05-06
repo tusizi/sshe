@@ -1,12 +1,11 @@
 package sy.service;
 
-import java.io.Serializable;
+import sy.pageModel.User;
 
-import sy.model.User;
 
 public interface UserServiceI {
 
-	public void save(String name, String pwd);
-	
+	public void save(User user);
+	public user login(User user);
 	
 }

@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sy.dao.UserDaoI;
-import sy.model.User;
+import sy.model.Tuser;
+import sy.pageModel.User;
 import sy.service.UserServiceI;
+import sy.util.Encrypt;
 
 @Service(value="userService")
 public class UserServiceImpl implements UserServiceI {
@@ -28,14 +31,16 @@ public class UserServiceImpl implements UserServiceI {
 	}
 
 	@Override
-	public void save(String name, String pwd) {
+	public void save(User user) {
 		
-		User user=new User();
-		user.setId(UUID.randomUUID().toString());
-		user.setName(name);
-		user.setPwd(pwd);
-		user.setCreatetime(new Date());
-		userDao.save(user);
+		Tuser t=new Tuser();
+//		t.setName(user.getName());
+//		t.setPwd(user.getPwd());
+		BeanUtils.copyProperties(user, t, new String[]{"pwd"});
+		t.setId(UUID.randomUUID().toString());		
+		t.setCreatetime(new Date());
+		t.setPwd(Encrypt.e(user.getPwd()));
+		userDao.save(t);
 	}
 
 
