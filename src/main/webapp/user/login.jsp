@@ -20,6 +20,10 @@ $(function(){
 			  $('#user_login_loginForm').submit();
 		  }
 	});
+	window.setTimeout(function(){
+		$('#user_login_loginForm input [name=name]').focus();
+	},0);
+	
 });
 </script>
    <div id="user_login_loginDialog" class="easyui-dialog" data-options="title:'登录',modal:true,closable:false,buttons:[{
@@ -32,7 +36,9 @@ $(function(){
 			},{
 				text:'登录',
 				iconCls:'icon-help',
-				handler:function(){}
+				handler:function(){
+				 $('#user_login_loginForm').submit();
+				}
 			}]">
 	<form id = "user_login_loginForm" method="post">
     	<table>
@@ -42,7 +48,7 @@ $(function(){
     		</tr>
     		<tr>
     			<th>密码</th>
-    			<td><input name ="pwd" class="easyui-validatebox" data-options="required:true,missingMessage:'密码必填'" /></td>
+    			<td><input type="password" name ="pwd" class="easyui-validatebox" data-options="required:true,missingMessage:'密码必填'" /></td>
     		</tr>
     	</table>
     </form>
