@@ -7,6 +7,30 @@
 	<packaging>war</packaging>
 	<name />
 	<description />
+	<!-- 指定Maven仓库 -->
+	<repositories>
+		<repository>
+			<id>maven</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>alibaba-opensource</id>
+			<name>alibaba-opensource</name>
+			<url>http://code.alibabatech.com/mvn/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>alibaba-opensource-snapshot</id>
+			<name>alibaba-opensource-snapshot</name>
+			<url>http://code.alibabatech.com/mvn/snapshots/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
