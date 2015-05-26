@@ -2,11 +2,21 @@ package sy.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Tmenu entity. @author MyEclipse Persistence Tools
  */
-
+@Entity
+@Table(name = "tmenu", catalog = "sshe")
 public class Tmenu implements java.io.Serializable {
 
 	// Fields
@@ -16,7 +26,7 @@ public class Tmenu implements java.io.Serializable {
 	private String text;
 	private String iconCls;
 	private String url;
-	private Set tmenus = new HashSet(0);
+	private Set<Tmenu> tmenus = new HashSet<Tmenu>(0);
 
 	// Constructors
 
@@ -30,7 +40,7 @@ public class Tmenu implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Tmenu(String id, Tmenu tmenu, String text, String iconCls, String url, Set tmenus) {
+	public Tmenu(String id, Tmenu tmenu, String text, String iconCls, String url, Set<Tmenu> tmenus) {
 		this.id = id;
 		this.tmenu = tmenu;
 		this.text = text;
@@ -40,7 +50,8 @@ public class Tmenu implements java.io.Serializable {
 	}
 
 	// Property accessors
-
+	@Id
+	@Column(name = "id", unique = true, nullable = false, length = 36)
 	public String getId() {
 		return this.id;
 	}
@@ -49,6 +60,8 @@ public class Tmenu implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pid")
 	public Tmenu getTmenu() {
 		return this.tmenu;
 	}
@@ -57,6 +70,7 @@ public class Tmenu implements java.io.Serializable {
 		this.tmenu = tmenu;
 	}
 
+	@Column(name = "text", length = 100)
 	public String getText() {
 		return this.text;
 	}
@@ -65,6 +79,7 @@ public class Tmenu implements java.io.Serializable {
 		this.text = text;
 	}
 
+	@Column(name = "iconCls", length = 50)
 	public String getIconCls() {
 		return this.iconCls;
 	}
@@ -73,6 +88,7 @@ public class Tmenu implements java.io.Serializable {
 		this.iconCls = iconCls;
 	}
 
+	@Column(name = "url", length = 200)
 	public String getUrl() {
 		return this.url;
 	}
@@ -81,11 +97,12 @@ public class Tmenu implements java.io.Serializable {
 		this.url = url;
 	}
 
-	public Set getTmenus() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tmenu")
+	public Set<Tmenu> getTmenus() {
 		return this.tmenus;
 	}
 
-	public void setTmenus(Set tmenus) {
+	public void setTmenus(Set<Tmenu> tmenus) {
 		this.tmenus = tmenus;
 	}
 

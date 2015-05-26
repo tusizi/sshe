@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name></display-name>	
-  <!-- spring配置文件位置 -->
+	<display-name></display-name>
+	<!-- spring配置文件位置 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring.xml,classpath:spring-hibernate.xml</param-value>
@@ -36,8 +33,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+	<!-- 修复数据库监听器 -->
+	<listener>
+		<listener-class>sy.listener.RepairListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
