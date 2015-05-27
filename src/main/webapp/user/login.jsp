@@ -11,7 +11,7 @@ $(function(){
 	    	}
 	    	$.messager.show({
 	    		title : '提示',
-	    		msg : obj.msg,
+	    		msg : obj.msg
 	    	});
 	    }
 	});
@@ -30,7 +30,7 @@ $(function(){
 				text:'注册',
 				iconCls:'icon-edit',
 				handler:function(){
-					$('#user_reg_regForm input').val('');
+					
 					$('#user_reg_regDialog').dialog('open');
 				}
 			},{

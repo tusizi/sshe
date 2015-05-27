@@ -21,7 +21,14 @@
 	<div data-options="region:'north'" style="height:60px;"></div>
 	<div data-options="region:'south'" style="height:20px;"></div>
 	<div data-options="region:'west'" style="width:200px;">
-		<div class="easyui-panel" data-options="title:'ssss',border:false,fit:true"></div>
+		<div class="easyui-panel" data-options="title:'功能树',border:false,fit:true">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="系统菜单" data-options="iconCls:'icon-save'">
+					<ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath}/menuAction!getTreeNode.action',parentField:'pid',lines:true"></ul>
+				</div>
+				<div title="Title2" data-options="iconCls:'icon-reload'"></div>
+			</div>
+		</div>
 	</div>
 	<div data-options="region:'east',title:'east',split:true" style="width:200px;"></div>
 	<div data-options="region:'center',title:'center'"></div>

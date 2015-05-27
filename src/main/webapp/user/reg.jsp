@@ -11,7 +11,7 @@
 		    	}
 		    	$.messager.show({
 		    		title : '提示',
-		    		msg : obj.msg,
+		    		msg : obj.msg
 		    	});
 		    }
 		});
