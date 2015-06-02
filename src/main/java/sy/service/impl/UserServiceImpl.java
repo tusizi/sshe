@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sy.dao.BaseDaoI;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserServiceI {
 		return userDao;
 	}
 
+	@Autowired
 	public void setUserDao(BaseDaoI<Tuser> userDao) {
 		this.userDao = userDao;
 	}

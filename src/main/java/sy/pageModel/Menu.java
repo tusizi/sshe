@@ -1,10 +1,20 @@
 package sy.pageModel;
 
+import java.util.Map;
+
 public class Menu {
 	private String state;
 	private String pid;
 	private String ptext;
-	
+	private Map<String, Object> attributes;
+
+	public Map<String, Object> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Map<String, Object> attributes) {
+		this.attributes = attributes;
+	}
 
 	public String getState() {
 		return state;
@@ -33,7 +43,6 @@ public class Menu {
 	private String id;
 	private String text;
 	private String iconCls;
-	private String url;
 
 	public String getId() {
 		return id;
@@ -57,14 +66,6 @@ public class Menu {
 
 	public void setIconCls(String iconCls) {
 		this.iconCls = iconCls;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 }

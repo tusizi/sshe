@@ -62,7 +62,7 @@ public class RepairServiceImpl implements RepairServiceI {
 		yhgl.setId("yhgl");
 		yhgl.setTmenu(xtgl);
 		yhgl.setText("用户管理");
-		yhgl.setUrl("");
+		yhgl.setUrl("/admin/yhgl.jsp");
 		menuDao.saveOrUpdate(yhgl);
 		
 		Tmenu jsgl = new Tmenu();
