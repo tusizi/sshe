@@ -1,7 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	function addTab(opts) {
-		var t = $('#index_centerTabs');
+		var t = $('#layout_center_Tabs');
 		if (t.tabs('exists', opts.title)) {
 			t.tabs('select', opts.title);
 		} else {
@@ -10,6 +10,6 @@
 		}
 	}
 </script>
-<div id="index_centerTabs" class="easyui-tabs" data-options="fit:true,border:false" style="overflow:hidden;">
+<div id="layout_center_Tabs" class="easyui-tabs" data-options="fit:true,border:false" style="overflow:hidden;">
 	<div title="首页"></div>
 </div>

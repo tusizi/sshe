@@ -1,8 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
 <div class="easyui-panel" data-options="title:'功能树',border:false,fit:true">
 	<div class="easyui-accordion" data-options="fit:true,border:false">
 		<div title="系统菜单" data-options="iconCls:'icon-save'">
-			<ul id="index_tree" class="easyui-tree" data-options="
+			<ul id="layout_west_tree" class="easyui-tree" data-options="
 						url:'${pageContext.request.contextPath}/menuAction!getAllTreeNode.action',
 						parentField:'pid',
 						lines:true,
