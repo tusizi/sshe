@@ -3,6 +3,24 @@ package sy.pageModel;
 import java.util.Date;
 
 public class User implements java.io.Serializable {
+	private String sort;
+	private String order;
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
 	private int page;
 	private int rows;
 	private String id;

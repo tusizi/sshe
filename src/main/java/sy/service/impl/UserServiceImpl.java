@@ -67,10 +67,14 @@ public class UserServiceImpl implements UserServiceI {
 		DataGrid dg = new DataGrid();
 		String hql = "from Tuser t";
 		String totalHql = "select count(*)" + hql;
-		List<Tuser> l = userDao.find(hql,user.getPage(),user.getRows());//这个Tuser为什么不用new
+		if (user.getSort() != null) {
+			hql += "order by" + user.getSort() + " " + user.getOrder();
+		}
+
+		List<Tuser> l = userDao.find(hql, user.getPage(), user.getRows());// 这个Tuser为什么不用new
 		List<User> nl = new ArrayList<User>();
 		if (l != null && l.size() > 0) {
-			for(Tuser t:l){
+			for (Tuser t : l) {
 				User u = new User();
 				BeanUtils.copyProperties(t, u);
 				nl.add(u);
