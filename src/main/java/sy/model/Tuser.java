@@ -1,6 +1,7 @@
 package sy.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -54,7 +55,7 @@ public class Tuser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATETIME", length = 10)
 	public Date getCreatetime() {
 		return this.createtime;
@@ -64,7 +65,7 @@ public class Tuser implements java.io.Serializable {
 		this.createtime = createtime;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "MODIFYTIME", length = 10)
 	public Date getModifytime() {
 		return this.modifytime;

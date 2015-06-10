@@ -66,13 +66,19 @@ public class UserServiceImpl implements UserServiceI {
 	public DataGrid dataGrid(User user) {
 		DataGrid dg = new DataGrid();
 		String hql = "from Tuser t";
+		Map<String, Object> params = new HashMap<String, Object>();
+		hql = addWhere(user, hql, params);
 		String totalHql = "select count(*)" + hql;
-		if (user.getSort() != null) {
-			hql += "order by" + user.getSort() + " " + user.getOrder();
-		}
-
-		List<Tuser> l = userDao.find(hql, user.getPage(), user.getRows());// 这个Tuser为什么不用new
+		hql = addOrder(user, hql);
+		List<Tuser> l = userDao.find(hql, params, user.getPage(), user.getRows());// 这个Tuser为什么不用new
 		List<User> nl = new ArrayList<User>();
+		changeModel(l, nl);
+		dg.setTotal(userDao.count(totalHql, params));
+		dg.setRows(nl);
+		return dg;
+	}
+
+	private void changeModel(List<Tuser> l, List<User> nl) {
 		if (l != null && l.size() > 0) {
 			for (Tuser t : l) {
 				User u = new User();
@@ -80,9 +86,21 @@ public class UserServiceImpl implements UserServiceI {
 				nl.add(u);
 			}
 		}
-		dg.setTotal(userDao.count(totalHql));
-		dg.setRows(nl);
-		return dg;
+	}
+
+	private String addOrder(User user, String hql) {
+		if (user.getSort() != null) {
+			hql += "order by" + user.getSort() + " " + user.getOrder();
+		}
+		return hql;
+	}
+
+	private String addWhere(User user, String hql, Map<String, Object> params) {
+		if (user.getName() != null && !user.getName().trim().equals("")) {
+			hql += "where t.name like :name";
+			params.put("name", "%%" + user.getName().trim() + "%%");
+		}
+		return hql;
 	}
 
 }

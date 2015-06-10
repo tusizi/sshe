@@ -11,7 +11,7 @@ public class DataGrid {
 		return total;
 	}
 
-	public void setTotal(Long totle) {
+	public void setTotal(Long total) {
 		this.total = total;
 	}
 
