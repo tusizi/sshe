@@ -6,8 +6,10 @@ import sy.pageModel.User;
 
 public interface UserServiceI {
 
-	public void save(User user);
+	public User save(User user);
 	public User login(User user);
+	public void remove(String ids);
 	public DataGrid dataGrid(User user);
+	public User edit(User user);
 	
 }

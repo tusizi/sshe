@@ -22,7 +22,8 @@ import sy.util.Encrypt;
 @Service(value = "userService")
 public class UserServiceImpl implements UserServiceI {
 
-	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+	private static final Logger logger = Logger
+			.getLogger(UserServiceImpl.class);
 
 	private BaseDaoI<Tuser> userDao;
 
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserServiceI {
 	}
 
 	@Override
-	public void save(User user) {
+	public User save(User user) {
 
 		Tuser t = new Tuser();
 		// t.setName(user.getName());
@@ -46,16 +47,21 @@ public class UserServiceImpl implements UserServiceI {
 		t.setCreatetime(new Date());
 		t.setPwd(Encrypt.e(user.getPwd()));
 		userDao.save(t);
+		BeanUtils.copyProperties(t, user);
+		return user;
 	}
 
 	@Override
 	public User login(User user) {
-		// Tuser t = userDao.get("from Tuser t where t.name='" + user.getName()+"'and t.pwd='" + Encrypt.e(user.getPwd()) + "' ");
-		// Tuser t = userDao.get("from Tuser t where t.name=? and t.pwd=? ",new Object[]{user.getName(),Encrypt.e(user.getPwd())});
+		// Tuser t = userDao.get("from Tuser t where t.name='" +
+		// user.getName()+"'and t.pwd='" + Encrypt.e(user.getPwd()) + "' ");
+		// Tuser t = userDao.get("from Tuser t where t.name=? and t.pwd=? ",new
+		// Object[]{user.getName(),Encrypt.e(user.getPwd())});
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", user.getName());
 		params.put("pwd", Encrypt.e(user.getPwd()));
-		Tuser t = userDao.get("from Tuser t where t.name=:name and t.pwd=:pwd ", params);
+		Tuser t = userDao.get(
+				"from Tuser t where t.name=:name and t.pwd=:pwd ", params);
 		if (t != null) {
 			return user;
 		}
@@ -70,7 +76,8 @@ public class UserServiceImpl implements UserServiceI {
 		hql = addWhere(user, hql, params);
 		String totalHql = "select count(*)" + hql;
 		hql = addOrder(user, hql);
-		List<Tuser> l = userDao.find(hql, params, user.getPage(), user.getRows());// 这个Tuser为什么不用new
+		List<Tuser> l = userDao.find(hql, params, user.getPage(),
+				user.getRows());// 这个Tuser为什么不用new
 		List<User> nl = new ArrayList<User>();
 		changeModel(l, nl);
 		dg.setTotal(userDao.count(totalHql, params));
@@ -101,6 +108,36 @@ public class UserServiceImpl implements UserServiceI {
 			params.put("name", "%%" + user.getName().trim() + "%%");
 		}
 		return hql;
+	}
+
+	@Override
+	public void remove(String ids) {
+		// for (String id : ids.split(",")) {
+		// Tuser u = userDao.get(Tuser.class, id);
+		// if (u != null) {
+		// userDao.delete(u);
+		//
+		// }
+		// }
+		String[] nids = ids.split(",");
+		String hql = "delete Tuser t where t.id in(";
+		for (int i = 0; i < nids.length; i++) {
+			if (i > 0) {
+				hql += ",";
+			}
+			hql += "'" + nids[i] + "'";
+		}
+		hql += ")";
+		logger.info(hql);
+		userDao.executeHql(hql);
+
+	}
+
+	@Override
+	public User edit(User user) {
+		Tuser t = userDao.get(Tuser.class, user.getId());
+		BeanUtils.copyProperties(user, t, new String [] {"id","pwd"});
+		return user;
 	}
 
 }

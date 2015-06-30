@@ -37,6 +37,11 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
 	}
 
 	@Override
+	public T get( Class<T> c,Serializable id) {
+		return (T) this.getCurrentSession().get(c, id);
+	}
+
+	@Override
 	public T get(String hql) {
 		Query q = this.getCurrentSession().createQuery(hql);
 		List<T> l = q.list();
@@ -98,7 +103,8 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
 	}
 
 	@Override
-	public List<T> find(String hql, Map<String, Object> params, int page, int rows) {
+	public List<T> find(String hql, Map<String, Object> params, int page,
+			int rows) {
 		Query q = this.getCurrentSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
@@ -130,4 +136,18 @@ public class BaseDaoImpl<T> implements BaseDaoI<T> {
 		}
 		return (Long) q.uniqueResult();
 	}
+
+	@Override
+	public int executeQuery(String hql) {
+		Query q = this.getCurrentSession().createQuery(hql);
+		return q.executeUpdate();
+		
+	}
+
+	@Override
+	public int executeHql(String hql) {
+		Query q = this.getCurrentSession().createQuery(hql);
+		return q.executeUpdate();
+	}
+
 }
